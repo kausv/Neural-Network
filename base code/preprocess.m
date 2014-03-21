@@ -43,8 +43,8 @@ test_data = double(all_test_data(:,1:784))/255;
 test_label = all_test_data(:,785);
 
 all_data(:) = all_data(randperm(numel(all_data)));
-train_data = double(all_data(1:50000,1:784))/255;
-train_label = all_data(1:50000,785);
+train_data = double(all_data(1:2,1:784))/255;%TODO change to 1:50000
+train_label = all_data(1:2,785);%TODO change to 1:50000
 validation_data = double(all_data(50001:60000,1:784))/255;
 validation_label = all_data(50001:60000,785);
 

@@ -44,6 +44,15 @@ w1 = reshape(params(1:n_hidden * (n_input + 1)), ...
 w2 = reshape(params((1 + (n_hidden * (n_input + 1))):end), ...
                  n_class, (n_hidden + 1));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+training_data = [training_data ones(size(training_data,1))]';
+i = 1;
+%for i = 1:size(training_data,2)
+
+z = 1./(w1 * training_data(:,i),1,0);
+y = sigmf(w2 * [z;1]);
+display(z);
+display(y);
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   YOUR CODE HERE %%%%%%%%%%%%%%%%%%%%
