@@ -14,6 +14,12 @@ function label = nnPredict(w1, w2, data)
        
 % Output: 
 % label: a column vector of predicted labels
+display(w1);
+display(w2);
+data = [data ones(size(data,1),1)]';
+z = 1./(1+exp(w1 * data));
+
+label = (1./(1+exp(w2 * [z;ones(1,size(z,2))])))';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   YOUR CODE HERE %%%%%%%%%%%%%%%%%%%%

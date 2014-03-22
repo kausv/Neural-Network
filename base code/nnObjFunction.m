@@ -44,26 +44,28 @@ w1 = reshape(params(1:n_hidden * (n_input + 1)), ...
 w2 = reshape(params((1 + (n_hidden * (n_input + 1))):end), ...
                  n_class, (n_hidden + 1));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+training_label = training_label';
 training_data = [training_data ones(size(training_data,1),1)]';
-size(training_data,2)
+z = 1./(1+exp(w1 * training_data));
 
-for i = 1:size(training_data,2)
-    z = 1./(1+exp(w1 * training_data(:,i)));
-    y = 1./(1+exp(w2 * [z;1]));
-    display(z);
-    display(y);
-end
-
-
+y = 1./(1+exp(w2 * [z;ones(1,size(z,2))]));
+delta = y - training_label;
+grad_w2 = delta * ([z;ones(1,size(z,2))]');
+%grad_w1 = (training_data * delta' * w2  * ((ones(size(z)) - z) * z'))';
+grad_w1 = ((ones(size(z)) - z) * z') * w2(:,1:size(z,1))'* delta * training_data';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   YOUR CODE HERE %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+En = -(dot(training_label,log(y)) + dot((ones(size(training_label)) - training_label),(log(ones(size(y))) - y)));
 
+E = sum(En)/size(En,2);
 
+obj_val = E + lambda * (sum(dot(w1',w1')) + sum(dot(w2',w2')))/(2 * size(En,2));
 
 % Suppose the gradient of w1 and w2 are stored in 2 matrices grad_w1 and grad_w2
 % Unroll gradients to single column vector
 obj_grad = [grad_w1(:) ; grad_w2(:)];
 
+display(obj_val)
 end
