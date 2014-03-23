@@ -61,10 +61,19 @@ for i=1:size(training_label,2)
 end
 
 delta = y - t;
-grad_w2 = delta * ([z;ones(1,size(z,2))]');
-%grad_w1 = (training_data * delta' * w2  * ((ones(size(z)) - z) * z'))';
+grad_w2 = delta * ([z;ones(1,size(z,2))]')./size(training_data,2);
 
-grad_w1 = ((ones(size(z)) - z) .* z).*( w2(:,1:size(z,1))'* delta) * training_data';
+%grad_w1 = (training_data * delta' * w2  * ((ones(size(z)) - z) * z'))';
+%grad_w1 = ((1 - z) .* z).*( w2(:,1:size(z,1))'* delta) * training_data';
+
+size(((1 - z) .* z)')
+size(w2(:,1:size(z,1))')
+size(delta)
+constant = ((1 - z) .* z).*(w2(:,1:size(z,1))'*delta); 
+summation = training_data';
+
+grad_w1 = constant*summation./size(training_data,2);
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   YOUR CODE HERE %%%%%%%%%%%%%%%%%%%%

@@ -89,8 +89,8 @@ test_data = double(all_test_data(:,1:size(all_test_data,2)-1))/255; %TODO make r
 test_label = all_test_data(:,size(all_test_data,2));
 
 all_data(:) = all_data(randperm(size(all_data,1)),:);
-train_data = double(all_data(1:100,1:size(all_data,2) - 1))/255;%TODO change to 1:50000
-train_label = all_data(1:100,(size(all_data,2)));%TODO change to 1:50000
+train_data = double(all_data(1:50000,1:size(all_data,2) - 1))/255;%TODO change to 1:50000
+train_label = all_data(1:50000,(size(all_data,2)));%TODO change to 1:50000
 
 validation_data = double(all_data(50001:60000,1:size(all_test_data,2) - 1))/255;
 validation_label = all_data(50001:60000,size(all_test_data,2));
