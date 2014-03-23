@@ -14,21 +14,14 @@ function label = nnPredict(w1, w2, data)
        
 % Output: 
 % label: a column vector of predicted labels
+%display(w1);
+%display(w2);
+data = [data ones(size(data,1),1)]';
+z = 1./(1+exp(-(w1 * data)));
 
-% initialize the weights into some random matrices
-initial_w1 = initializeWeights(n_input, n_hidden);
-initial_w2 = initializeWeights(n_hidden, n_class);
-% unroll 2 weight matrices into single column vector
-initialWeights = [initial_w1(:); initial_w2(:)];
-
-for i=1:size(data,1)
-   objFunction = @(params) nnObjFunction(params, n_input, n_hidden, ...
-                       n_class, train_data, train_label, lambda); 
-end
-z = 1./(1+exp(w1 * data));
-
-label = (1./(1+exp(w2 * [z;ones(1,size(z,2))])))';
-
+label = (1./(1+exp(-(w2 * [z;ones(1,size(z,2))]))))';
+retValue = max(label
+size(label)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   YOUR CODE HERE %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

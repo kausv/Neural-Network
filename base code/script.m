@@ -48,8 +48,8 @@ w2 = reshape(nn_params((1 + (n_hidden * (n_input + 1))):end), ...
 %   Test the computed parameters
 predicted_label = nnPredict(w1, w2, train_data);
 %Remove
-display(predicted_label);
-display(train_label);
+  %display(predicted_label');
+  %display(train_label');
 %Remove
 fprintf('\nTraining Set Accuracy: %f\n', ...
          mean(double(predicted_label == train_label)) * 100);
