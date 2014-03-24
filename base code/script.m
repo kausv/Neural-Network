@@ -29,7 +29,7 @@ initialWeights = [initial_w1(:); initial_w2(:)];
 options = optimset('MaxIter', 50);
 
 % set the regularization hyper-parameter
-lambda = 0;
+lambda = 0.8;
 
 % define the objective function
 objFunction = @(params) nnObjFunction(params, n_input, n_hidden, ...
@@ -47,10 +47,7 @@ w2 = reshape(nn_params((1 + (n_hidden * (n_input + 1))):end), ...
 
 %   Test the computed parameters
 predicted_label = nnPredict(w1, w2, train_data);
-%Remove
-  %display(predicted_label');
-  %display(train_label');
-%Remove
+
 fprintf('\nTraining Set Accuracy: %f\n', ...
          mean(double(predicted_label == train_label)) * 100);
 

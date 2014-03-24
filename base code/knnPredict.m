@@ -10,6 +10,10 @@ function label = knnPredict(k, train_data, train_label, test_data)
 % Output:
 % label: a column vector of predicted labels
 
+
+label = knnclassify(test_data, train_data, train_label, k, 'euclidean', 'nearest');
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   YOUR CODE HERE %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
