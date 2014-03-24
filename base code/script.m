@@ -29,7 +29,7 @@ initialWeights = [initial_w1(:); initial_w2(:)];
 options = optimset('MaxIter', 50);
 
 % set the regularization hyper-parameter
-lambda = 0.8;
+lambda = 1;
 
 % define the objective function
 objFunction = @(params) nnObjFunction(params, n_input, n_hidden, ...
@@ -64,7 +64,7 @@ fprintf('\nTesting Set Accuracy: %f\n', ...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % **************K-Nearest Neighbors***************************
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-k = 1;
+k = 4;
 %   Test KNN with validation data
 predicted_label = knnPredict(k, train_data, train_label, validation_data);
 fprintf('\nValidation Set Accuracy: %f\n', ...
